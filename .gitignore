@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/InternSharp/CopilotIndices/17.13.441.19478/CodeChunks.db
+/.vs/InternSharp/CopilotIndices/17.13.441.19478
+/.vs/InternSharp/v17
+/.vs/InternSharp/FileContentIndex
+.obj/
+.bin/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide
+*.sln.ide.user
+*.sln.ide.userprefs
