@@ -1,19 +1,26 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs/InternSharp/CopilotIndices/17.13.441.19478/CodeChunks.db
-/.vs/InternSharp/CopilotIndices/17.13.441.19478
-/.vs/InternSharp/v17
-/.vs/InternSharp/FileContentIndex
-.obj/
-.bin/
+﻿bin/
+obj/
+.vs/
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-*.sln.ide
-*.sln.ide.user
-*.sln.ide.userprefs
-/InternSharp/bin/Debug/net8.0
-/InternSharp/obj/Debug/net8.0
+*.dll
+*.exe
+*.pdb
+
+# Ignore package dependencies
+packages/
+!packages/repositories.config
+
+# Ignore logs and temporary files
+*.log
+logs/
+temp/
+
+# Ignore configuration files
+appsettings*.json
+
+# Ignore environment variables
+.env
+secrets.json
