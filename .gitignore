@@ -15,3 +15,5 @@
 *.sln.ide
 *.sln.ide.user
 *.sln.ide.userprefs
+/InternSharp/bin/Debug/net8.0
+/InternSharp/obj/Debug/net8.0
