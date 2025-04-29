@@ -17,7 +17,10 @@ namespace InternSharp.Controllers
         {
             return View();
         }
-
+        public IActionResult HomePage()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

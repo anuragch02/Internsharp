@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InternSharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7785c37ab5802ca50b43b174972f1e139046c2dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("InternSharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InternSharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

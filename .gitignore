@@ -24,3 +24,10 @@ appsettings*.json
 # Ignore environment variables
 .env
 secrets.json
+/InternSharp/obj/Debug/net8.0/InternSharp.AssemblyInfoInputs.cache
+/InternSharp/obj/Debug/net8.0/InternSharp.assets.cache
+/InternSharp/obj/Debug/net8.0/InternSharp.GeneratedMSBuildEditorConfig.editorconfig
+/InternSharp/obj/InternSharp.csproj.nuget.dgspec.json
+/InternSharp/obj/InternSharp.csproj.nuget.g.props
+/InternSharp/obj/project.assets.json
+/InternSharp/obj/project.nuget.cache
