@@ -20,7 +20,7 @@ namespace InternSharp.Controllers
                 }
                 ModelState.AddModelError("", "Invalid login");
             }
-            return View(model);
+            return View(model);3
         }
 
         public ActionResult Logout()
