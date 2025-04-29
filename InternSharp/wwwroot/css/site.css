@@ -37,10 +37,12 @@ header {
     position: sticky;
     top: 0;
 }
-
-.nav a:hover {
-    background-color: var(--btn-color);
+.nav a {
     padding: 5px 8px 5px 8px;
+}
+.nav a:hover {
+/*    background-color: var(--btn-color);*/
+    /*    padding: 5px 8px 5px 8px;*/
     border-radius: 5px;
     color: var(--text-color);
 }
@@ -120,20 +122,38 @@ hr {
 abbr:where([title]) {
     text-decoration: underline dotted;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-size: inherit;
-    font-weight: inherit;
+header a , footer a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+.dropdown-menu {
+    min-width: 300px;
+    padding: 1rem;
 }
 
-a {
-    color: var(--text-color) !important;
-    text-decoration: none;
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+}
+
+.dropdown-header {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.new-badge {
+    font-size: 0.65rem;
+    background: orange;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.dropdown-divider {
+    margin: 0.5rem 0;
 }
 
 b,
@@ -1202,7 +1222,7 @@ video {
 
 body {
     line-height: inherit;
-    padding: 24px;
+/*    padding: 24px;*/
     display: flex;
     flex-direction: column;
     min-width: 100vw;
@@ -1279,9 +1299,9 @@ color: var(--text-color);
     font-weight: bold;
 }
 
-    .btn-color:hover {
-        background-color: #97eff5;
-    }
+.btn-color:hover {
+    background-color: #97eff5;
+}
 
 .login-with {
     margin-top: 15px;
@@ -1409,6 +1429,7 @@ color: var(--text-color);
 .card h3 {
     color: var(--text-color);
     padding: 20px 0px 5px 0px;
+/*    font-weight:bold;*/
     /* color:#008bdc; */
     /* color:rgb(45, 197, 197); */
     /* text-align: center; */
