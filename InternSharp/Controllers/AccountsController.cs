@@ -5,12 +5,12 @@ namespace InternSharp.Controllers
 {
     public class AccountsController : Controller
     {
-        public IActionResult Login()
+        public IActionResult SignIn()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(LoginModel model)
+        public ActionResult SignIn(SignInModel model)
         {
             if (model.Username == "admin" && model.Password == "admin123")
             {
@@ -22,9 +22,6 @@ namespace InternSharp.Controllers
             }
             return View();
         }
-        public IActionResult SignUp()
-        {
-            return View();
-        }
+       
     }
 }
