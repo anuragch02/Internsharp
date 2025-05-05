@@ -1,26 +1,36 @@
-﻿bin/
+﻿# Build Folders
+bin/
 obj/
 .vs/
+Debug/
+Release/
+
+# User-specific files
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
+
+# Build output
 *.dll
 *.exe
 *.pdb
 
-# Ignore package dependencies
+# NuGet
+*.nupkg
+*.snupkg
 packages/
 !packages/repositories.config
+project.nuget.cache
 
-# Ignore logs and temporary files
+# Logs
 *.log
 logs/
 temp/
 
-# Ignore configuration files
+# Configuration
 appsettings*.json
 
-# Ignore environment variables
+# Environment files
 .env
 secrets.json

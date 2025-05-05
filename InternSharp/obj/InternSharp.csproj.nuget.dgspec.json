@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anuragc.MCNSOLUTIONS\\source\\repos\\InternSharp\\InternSharp\\InternSharp.csproj": {}
+    "C:\\Users\\hp\\Desktop\\InterSharpATN\\InternSharp\\InternSharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anuragc.MCNSOLUTIONS\\source\\repos\\InternSharp\\InternSharp\\InternSharp.csproj": {
+    "C:\\Users\\hp\\Desktop\\InterSharpATN\\InternSharp\\InternSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anuragc.MCNSOLUTIONS\\source\\repos\\InternSharp\\InternSharp\\InternSharp.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\InterSharpATN\\InternSharp\\InternSharp.csproj",
         "projectName": "InternSharp",
-        "projectPath": "C:\\Users\\anuragc.MCNSOLUTIONS\\source\\repos\\InternSharp\\InternSharp\\InternSharp.csproj",
-        "packagesPath": "C:\\Users\\anuragc.MCNSOLUTIONS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anuragc.MCNSOLUTIONS\\source\\repos\\InternSharp\\InternSharp\\obj\\",
+        "projectPath": "C:\\Users\\hp\\Desktop\\InterSharpATN\\InternSharp\\InternSharp.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\InterSharpATN\\InternSharp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anuragc.MCNSOLUTIONS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -43,8 +43,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -68,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
