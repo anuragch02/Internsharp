@@ -596,7 +596,7 @@ video {
     justify-content: space-between;
 }
 
-#webcrumbs .gap-4 {
+/*#webcrumbs .gap-4 {
     gap: 16px;
 }
 
@@ -606,7 +606,7 @@ video {
 
 #webcrumbs .gap-8 {
     gap: 32px;
-}
+}*/
 
 #webcrumbs :is(.space-x-4 > :not([hidden]) ~ :not([hidden])) {
     --tw-space-x-reverse: 0;

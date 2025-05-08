@@ -16,7 +16,10 @@ namespace InternSharp.Controllers
         {
             return View();
         }
-
+        public IActionResult ResumeUpload()
+        {
+            return View();
+        }
 
     }
 }
