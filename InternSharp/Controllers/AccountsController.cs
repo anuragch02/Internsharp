@@ -22,6 +22,11 @@ namespace InternSharp.Controllers
             }
             return View();
         }
-       
+        //public ActionResult SignOut()
+        //{
+        //    Session.Clear();
+        //    return RedirectToAction("Index", "Home");
+        //}
+
     }
 }
