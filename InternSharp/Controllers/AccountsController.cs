@@ -1,27 +1,126 @@
 ﻿using InternSharp.Models;
+using InternSharp.Repositories;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace InternSharp.Controllers
 {
     public class AccountsController : Controller
     {
+        private readonly IUserRepository _userRepository;
+
+        public AccountsController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+        [HttpGet]
         public IActionResult SignIn()
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult SignIn(SignInModel model)
+        public async Task<IActionResult> RegisterAsync(SignUpModel model)
         {
-            if (model.Username == "admin" && model.Password == "admin123")
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var existingUser = await _userRepository.GetUserByEmailAsync(model.Email);
+            if (existingUser != null)
             {
-                ViewBag.Message = "Login Successful!";
+                ModelState.AddModelError("Email", "Email already exists");
+                return View(model);
             }
-            else
+
+            var user = new UserModel
             {
-                ViewBag.Message = "Invalid Credentials";
-            }
-            return View();
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                PasswordHash = model.Password
+            };
+
+            await _userRepository.CreateUserAsync(user);
+            return RedirectToAction("SignIn");
         }
-       
+
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = await _userRepository.GetUserByEmailAsync(model.Email);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
+            {
+                ModelState.AddModelError(string.Empty, "Invalid email or password.");
+                return View(model);
+            }
+
+            HttpContext.Session.SetString("UserId", user.Id.ToString());
+            HttpContext.Session.SetString("UserEmail", user.Email);
+            HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
+
+            return RedirectToAction("Home");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("SignIn");
+        }
+
+        // External login redirect
+        [HttpGet]
+        public IActionResult ExternalLogin(string provider)
+        {
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Accounts");
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return Challenge(properties, provider);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ExternalLoginCallback()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            var claims = result.Principal.Identities.FirstOrDefault()?.Claims;
+            var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var name = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+            if (email == null)
+                return RedirectToAction("SignIn");
+
+            var user = await _userRepository.GetUserByEmailAsync(email);
+
+            if (user == null)
+            {
+                var names = name?.Split(' ');
+                var newUser = new UserModel
+                {
+                    FirstName = names?.FirstOrDefault() ?? "First",
+                    LastName = names?.Skip(1).FirstOrDefault() ?? "Last",
+                    Email = email,
+                    PasswordHash = "external" // placeholder
+                };
+
+                await _userRepository.CreateUserAsync(newUser);
+                user = newUser;
+            }
+
+            HttpContext.Session.SetString("UserId", user.Id.ToString());
+            HttpContext.Session.SetString("UserEmail", user.Email);
+            HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
+
+            return RedirectToAction("Home");
+        }
     }
 }
