@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace InternSharp.Models
 {
@@ -19,7 +20,7 @@ namespace InternSharp.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password do not match.")]
         public string ConfirmPassword { get; set; }
-        public string AccountType { get; set; }
-
+        public int AccountTypeId { get; set; }
+        public List<SelectListItem> AccountTypes { get; set; }
     }
 }

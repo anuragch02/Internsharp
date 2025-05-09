@@ -15,26 +15,23 @@ namespace InternSharp.Repositories
         }
         public async Task<UserModel> CreateUserAsync(UserModel user)
         {
-            user.Id = Guid.NewGuid();
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
-
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", user.Id);
             parameters.Add("@FirstName", user.FirstName);
             parameters.Add("@LastName", user.LastName);
             parameters.Add("@Email", user.Email);
             parameters.Add("@PasswordHash", user.PasswordHash);
 
-            var query = " "; //  stored procedure
+            var query = "sp_RegisterUser";
 
             using var connection = _context.CreateConnection();
-            await connection.ExecuteAsync(query, parameters, commandType: CommandType.StoredProcedure);
+            var newUserId = await connection.ExecuteScalarAsync<int>(query, parameters, commandType: CommandType.StoredProcedure);
 
+            user.Id = newUserId;
             return user;
         }
         public async Task<UserModel?> GetUserByEmailAsync(string email)
         {
-            var query = " "; // Replace with your stored procedure name
+            var query = "sp_GetUserByEmail"; 
 
             var parameters = new DynamicParameters();
             parameters.Add("@Email", email);
@@ -43,6 +40,12 @@ namespace InternSharp.Repositories
             var user = await connection.QuerySingleOrDefaultAsync<UserModel>(query, parameters, commandType: CommandType.StoredProcedure);
 
             return user;
+        }
+        public async Task<IEnumerable<AccountTypes>> GetAccountTypesAsync()
+        {
+            using var connection = _context.CreateConnection();
+            var query = "SELECT Id, AccountType FROM AccountsMaster"; // Assuming AccountType table
+            return await connection.QueryAsync<AccountTypes>(query);
         }
 
     }

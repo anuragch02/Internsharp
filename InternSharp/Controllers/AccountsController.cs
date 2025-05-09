@@ -3,6 +3,7 @@ using InternSharp.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 
 namespace InternSharp.Controllers
@@ -16,10 +17,24 @@ namespace InternSharp.Controllers
             _userRepository = userRepository;
         }
 
+        //[HttpGet]
+        //public IActionResult SignIn()
+        //{
+        //    return View();
+        //}
         [HttpGet]
-        public IActionResult SignIn()
+        public async Task<IActionResult> SignIn()
         {
-            return View();
+            var model = new SignUpModel();
+
+            var accountTypes = await _userRepository.GetAccountTypesAsync(); 
+            model.AccountTypes = accountTypes.Select(a => new SelectListItem
+            {
+                Value = a.Id.ToString(),     
+                Text = a.AccountType        
+            }).ToList();
+
+            return View(model);
         }
 
         [HttpPost]
@@ -40,7 +55,8 @@ namespace InternSharp.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
-                PasswordHash = model.Password
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),
+                AccountTypeId = model.AccountTypeId
             };
 
             await _userRepository.CreateUserAsync(user);
@@ -63,9 +79,8 @@ namespace InternSharp.Controllers
 
             HttpContext.Session.SetString("UserId", user.Id.ToString());
             HttpContext.Session.SetString("UserEmail", user.Email);
-            HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
 
-            return RedirectToAction("Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Logout()

@@ -4,7 +4,8 @@ namespace InternSharp.Models
 {
     public class UserModel
     {
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -17,8 +18,8 @@ namespace InternSharp.Models
         public string Email { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
         public string PasswordHash { get; set; }       
         public bool IsActive { get; set; }
+        public int AccountTypeId { get; set; }
     }
 }
