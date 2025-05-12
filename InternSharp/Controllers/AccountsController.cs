@@ -27,8 +27,8 @@ namespace InternSharp.Controllers
         {
             var model = new SignUpModel();
 
-            var accountTypes = await _userRepository.GetAccountTypesAsync(); 
-            model.AccountTypes = accountTypes.Select(a => new SelectListItem
+            var accountTypes = await _userRepository.GetAccountTypesAsync();
+            ViewBag.AccountTypes = accountTypes.Select(a => new SelectListItem
             {
                 Value = a.Id.ToString(),     
                 Text = a.AccountType        
@@ -41,13 +41,15 @@ namespace InternSharp.Controllers
         public async Task<IActionResult> RegisterAsync(SignUpModel model)
         {
             if (!ModelState.IsValid)
-                return View(model);
+            {
+                return View("SignIn", model);
+            }
 
             var existingUser = await _userRepository.GetUserByEmailAsync(model.Email);
             if (existingUser != null)
             {
                 ModelState.AddModelError("Email", "Email already exists");
-                return View(model);
+                return View("SignIn", model); 
             }
 
             var user = new UserModel
@@ -71,7 +73,13 @@ namespace InternSharp.Controllers
 
             var user = await _userRepository.GetUserByEmailAsync(model.Email);
 
-            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid email or password.");
+                return View(model);
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
             {
                 ModelState.AddModelError(string.Empty, "Invalid email or password.");
                 return View(model);

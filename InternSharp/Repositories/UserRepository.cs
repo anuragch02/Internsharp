@@ -20,6 +20,7 @@ namespace InternSharp.Repositories
             parameters.Add("@LastName", user.LastName);
             parameters.Add("@Email", user.Email);
             parameters.Add("@PasswordHash", user.PasswordHash);
+            parameters.Add("@AccountTypeID", user.AccountTypeId);
 
             var query = "sp_RegisterUser";
 
@@ -41,10 +42,23 @@ namespace InternSharp.Repositories
 
             return user;
         }
+        //public async Task<SignInModel> AuthenticateUserAsync(SignInModel model)
+        //{
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("@Email", model.Email);
+        //    parameters.Add("@PasswordHash", model.Password);
+
+        //    var query = " ";
+
+        //    using var connection = _context.CreateConnection();
+        //    var user = await connection.QuerySingleOrDefaultAsync<SignInModel>(query, parameters, commandType: CommandType.StoredProcedure);
+
+        //    return user;
+        //}
         public async Task<IEnumerable<AccountTypes>> GetAccountTypesAsync()
         {
             using var connection = _context.CreateConnection();
-            var query = "SELECT Id, AccountType FROM AccountsMaster"; // Assuming AccountType table
+            var query = "SELECT Id, AccountType FROM AccountsMaster";
             return await connection.QueryAsync<AccountTypes>(query);
         }
 

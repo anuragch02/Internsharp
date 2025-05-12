@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace InternSharp.Models
@@ -16,11 +17,8 @@ namespace InternSharp.Models
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = "Password must contains 8 letters.", MinimumLength = 8)]
         public string Password { get; set; }
-        [Required]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Password do not match.")]
-        public string ConfirmPassword { get; set; }
+
         public int AccountTypeId { get; set; }
-        public List<SelectListItem> AccountTypes { get; set; }
+
     }
 }
