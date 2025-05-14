@@ -15,6 +15,12 @@
 
 </head>
 <body>
+    @{
+       
+        var useremail = Context.Session.GetString("UserEmail"); 
+        var isAuthenticated = !string.IsNullOrEmpty(useremail) || User.Identity.IsAuthenticated;
+
+    }
     <div id="webcrumbs" class="w-100">
         <div class="min-h-screen bg-white">
             <header class="bg-primary-600 text-white shadow-md" style="z-index:999;">
@@ -102,7 +108,20 @@
                                 <li><a class="dropdown-item" href="#">Explore More Internships</a></li>
                             </ul>
                         </div>
-                        <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors" asp-controller="Accounts" asp-action="SignIn">Sign In</a>
+                        @if (isAuthenticated)
+                        {
+                            <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors"
+                               asp-controller="Accounts" asp-action="SignOut">
+                                Sign Out
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors"
+                               asp-controller="Accounts" asp-action="SignIn">
+                                Sign In
+                            </a>
+                        }
                     </nav>
                 </div>
             </header>

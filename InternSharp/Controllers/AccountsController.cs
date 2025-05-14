@@ -25,31 +25,36 @@ namespace InternSharp.Controllers
         [HttpGet]
         public async Task<IActionResult> SignIn()
         {
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> SignUp()
+        {
             var model = new SignUpModel();
 
             var accountTypes = await _userRepository.GetAccountTypesAsync();
+
             ViewBag.AccountTypes = accountTypes.Select(a => new SelectListItem
             {
-                Value = a.Id.ToString(),     
-                Text = a.AccountType        
+                Value = a.Id.ToString(),
+                Text = a.AccountType
             }).ToList();
 
             return View(model);
         }
-
         [HttpPost]
-        public async Task<IActionResult> RegisterAsync(SignUpModel model)
+        public async Task<IActionResult> SignUp(SignUpModel model)
         {
             if (!ModelState.IsValid)
             {
-                return View("SignIn", model);
+                return View("SignUp", model);
             }
 
             var existingUser = await _userRepository.GetUserByEmailAsync(model.Email);
             if (existingUser != null)
             {
                 ModelState.AddModelError("Email", "Email already exists");
-                return View("SignIn", model); 
+                return View("SignUp", model); 
             }
 
             var user = new UserModel
@@ -85,17 +90,19 @@ namespace InternSharp.Controllers
                 return View(model);
             }
 
-            HttpContext.Session.SetString("UserId", user.Id.ToString());
             HttpContext.Session.SetString("UserEmail", user.Email);
 
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> SignOut()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Clear();
-            return RedirectToAction("SignIn");
+            TempData.Clear();
+            return RedirectToAction("SignIn", "Accounts");
         }
+
 
         // External login redirect
         [HttpGet]
@@ -130,20 +137,20 @@ namespace InternSharp.Controllers
                 var newUser = new UserModel
                 {
                     FirstName = names?.FirstOrDefault() ?? "First",
-                    LastName = names?.Skip(1).FirstOrDefault() ?? "Last",
+                    LastName = names?.Skip(1).FirstOrDefault() ?? "",
                     Email = email,
-                    PasswordHash = "external" // placeholder
+                    PasswordHash = "" ,// placeholder
+                    AccountTypeId = 1 // default account type
                 };
 
                 await _userRepository.CreateUserAsync(newUser);
                 user = newUser;
             }
 
-            HttpContext.Session.SetString("UserId", user.Id.ToString());
             HttpContext.Session.SetString("UserEmail", user.Email);
             HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
 
-            return RedirectToAction("Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

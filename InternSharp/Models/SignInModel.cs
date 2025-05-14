@@ -3,7 +3,7 @@ namespace InternSharp.Models
 {
     public class SignInModel
     {
-        public required string Email { get; set; }
-        public required string Password { get; set; }
+        public  string Email { get; set; }
+        public  string Password { get; set; }
     }
 }
