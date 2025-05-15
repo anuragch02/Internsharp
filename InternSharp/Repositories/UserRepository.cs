@@ -58,7 +58,7 @@ namespace InternSharp.Repositories
         public async Task<IEnumerable<AccountTypes>> GetAccountTypesAsync()
         {
             using var connection = _context.CreateConnection();
-            var query = "SELECT Id, AccountType FROM AccountsMaster";
+            var query = "sp_AccountType";
             return await connection.QueryAsync<AccountTypes>(query);
         }
 
