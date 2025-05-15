@@ -18,7 +18,13 @@
 
 </head>
 <body>
-    <!-- header section -->
+    @{
+
+        var useremail = Context.Session.GetString("UserEmail");
+        var username = Context.Session.GetString("UserName");
+        var isAuthenticated = !string.IsNullOrEmpty(useremail) || User.Identity.IsAuthenticated;
+
+    }
     <div id="webcrumbs" class="w-100">
         <div class="min-h-screen bg-white">
             <header class="bg-primary-600 text-white shadow-md" style="z-index:999;">
@@ -76,13 +82,21 @@
                                 <li><h6 class="dropdown-header">Comming Soon</h6></li>
                             </ul>
                         </div>
-                        @* <div id="authButton"> *@
-                            @* <button class="btn" onclick="signIn()">Sign In</button> *@
-                            @* <button onclick="signIn()" class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors"> *@
-                                <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors" asp-controller="Accounts" asp-action="SignIn" id="SignIn">Sign In</a>
-                                <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors" asp-controller="Home" asp-action="Index" id="SignOut" style="display:none;">Sign Out</a>
-                        @* </button> *@
-                       @* </div>  *@
+                        @if (isAuthenticated)
+                        {
+                            <p class =" font-bold transition-colors ">@username</p>
+                            <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors"
+                               asp-controller="Accounts" asp-action="SignOut">
+                                Sign Out
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors"
+                               asp-controller="Accounts" asp-action="SignIn">
+                                Sign In
+                            </a>
+                        }
                     </nav>
                 </div>
             </header>
