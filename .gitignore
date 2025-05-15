@@ -34,3 +34,9 @@ appsettings*.json
 # Environment files
 .env
 secrets.json
+/InternSharp/obj/Debug/net8.0/staticwebassets.removed.txt
+/.gitignore
+/.gitignore
+/InternSharp/obj/Debug/net8.0/InternSharp.AssemblyInfoInputs.cache
+/InternSharp/obj/Debug/net8.0/InternSharp.AssemblyInfo.cs
+/.gitignore

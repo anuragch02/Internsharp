@@ -1,3 +1,4 @@
+
 namespace InternSharp.Models
 {
     public class ErrorViewModel

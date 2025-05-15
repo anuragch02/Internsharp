@@ -1,11 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-@* <div class="text-center"> *@
-@*     <h1 class="display-4">Welcome</h1> *@
-@*     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
-@* </div> *@
 <div class="bg-gradient-to-b from-primary-50 to-white py-8">
     <div class="container mx-auto px-4">
         <div class="bg-white rounded-xl shadow-lg p-6 mb-8 transform transition-transform hover:shadow-xl">
@@ -16,7 +11,7 @@
                         <input type="text" placeholder="Search internships, companies, or skills" class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary-500 focus:outline-none transition-colors" />
                     </div>
                 </div>
-                <div class="flex flex-col md:flex-row gap-2">
+                <div class="flex flex-col md:flex-row gap-3">
                     <details class="relative group">
                         <summary class="flex items-center px-4 py-3 rounded-lg cursor-pointer transition-colors filter">
                             <span class="material-symbols-outlined msr-2"><i class="bi bi-funnel mr-2"> </i> </span>  Filters <span class="material-symbols-outlined ml-2"> <i class="bi bi-chevron-down"></i></span>
@@ -88,7 +83,7 @@
                 <span>128 internships found</span> <span class="text-primary-600">•</span> <span>Page 1 of 13</span>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
             <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-100 group">
                 <div class="p-5">
                     <div class="flex justify-between items-start">
@@ -96,7 +91,7 @@
                             <img src="https://logo.clearbit.com/google.com" alt="Google Logo"
                                  class="h-10 w-10 mr-3 bg-gray" />
                             <div style="cursor:pointer;">
-                                <h3 class="font-bold" style="font-size:18px;"><a asp-controller="Students" asp-action="Internship">Software Engineering Intern</a></h3>
+                                <h3 class="font-bold" style="font-size:18px;"><a style="color:black;" asp-controller="Students" asp-action="Internship">Software Engineering Intern</a></h3>
                                 <p class="text-gray-600">Google</p>
                             </div>
                         </div> 
@@ -119,7 +114,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-5 py-3 group-hover:bg-gray-100 transition-colors">
-                    <a href="#"
+                    <a asp-controller="Students" asp-action="Internship"
                        class="text-primary-600 font-medium hover:text-primary-700 transition-colors flex items-center">
                         View
                         Details <span class="material-symbols-outlined ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -133,7 +128,7 @@
                             <img src="https://logo.clearbit.com/microsoft.com"
                                  alt="Microsoft Logo" class="h-10 w-10 mr-3" />
                             <div>
-                                <h3 class="font-bold" style="font-size:18px;">Product Management Intern</h3>
+                                <h3 class="font-bold" style="font-size:18px;"><a style="color:black;" asp-controller="Students" asp-action="Internship">Product Management Intern</a></h3>
                                 <p class="text-gray-600">Microsoft</p>
                             </div>
                         </div> <button class="p-2 text-gray-400 hover:text-primary-500 transition-colors">
@@ -155,7 +150,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-5 py-3 group-hover:bg-gray-100 transition-colors">
-                    <a href="#"
+                    <a asp-controller="Students" asp-action="Internship"
                        class="text-primary-600 font-medium hover:text-primary-700 transition-colors flex items-center">
                         View
                         Details <span class="material-symbols-outlined ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -169,7 +164,7 @@
                             <img src="https://logo.clearbit.com/apple.com" alt="Apple Logo"
                                  class="h-10 w-10 mr-3" />
                             <div>
-                                <h3 class="font-bold" style="font-size:18px;">UX Design Intern</h3>
+                                <h3 class="font-bold" style="font-size:18px;"><a style="color:black;" asp-controller="Students" asp-action="Internship">UX Design Intern</a></h3>
                                 <p class="text-gray-600">Apple</p>
                             </div>
                         </div> <button class="p-2 text-primary-500 hover:text-primary-600 transition-colors">
@@ -192,7 +187,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-5 py-3 group-hover:bg-gray-100 transition-colors">
-                    <a href="#"
+                    <a asp-controller="Students" asp-action="Internship"
                        class="text-primary-600 font-medium hover:text-primary-700 transition-colors flex items-center">
                         View
                         Details <span class="material-symbols-outlined ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -206,7 +201,7 @@
                             <img src="https://logo.clearbit.com/amazon.com" alt="Amazon Logo"
                                  class="h-10 w-10 mr-3" />
                             <div>
-                                <h3 class="font-bold" style="font-size:18px;">Data Science Intern</h3>
+                                <h3 class="font-bold" style="font-size:18px;"><a style="color:black;" asp-controller="Students" asp-action="Internship">Data Science Intern</a></h3>
                                 <p class="text-gray-600">Amazon</p>
                             </div>
                         </div> <button class="p-2 text-gray-400 hover:text-primary-500 transition-colors">
@@ -228,7 +223,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-5 py-3 group-hover:bg-gray-100 transition-colors">
-                    <a href="#"
+                    <a asp-controller="Students" asp-action="Internship"
                        class="text-primary-600 font-medium hover:text-primary-700 transition-colors flex items-center">
                         View
                         Details <span class="material-symbols-outlined ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -242,7 +237,7 @@
                             <img src="https://logo.clearbit.com/tesla.com" alt="Tesla Logo"
                                  class="h-10 w-10 mr-3" />
                             <div>
-                                <h3 class="font-bold" style="font-size:18px;">Mechanical Engineering Intern</h3>
+                                <h3 class="font-bold" style="font-size:18px;"><a style="color:black;" asp-controller="Students" asp-action="Internship">Mechanical Engineering Intern</a></h3>
                                 <p class="text-gray-600">Tesla</p>
                             </div>
                         </div> <button class="p-2 text-gray-400 hover:text-primary-500 transition-colors">
@@ -264,7 +259,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-5 py-3 group-hover:bg-gray-100 transition-colors">
-                    <a href="#"
+                    <a asp-controller="Students" asp-action="Internship"
                        class="text-primary-600 font-medium hover:text-primary-700 transition-colors flex items-center">
                         View
                         Details <span class="material-symbols-outlined ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -278,7 +273,7 @@
                             <img src="https://logo.clearbit.com/meta.com" alt="Meta Logo"
                                  class="h-10 w-10 mr-3" />
                             <div>
-                                <h3 class="font-bold" style="font-size:18px;">AR/VR Development Intern</h3>
+                                <h3 class="font-bold" style="font-size:18px;"><a style="color:black;" asp-controller="Students" asp-action="Internship">AR/VR Development Intern</a></h3>
                                 <p class="text-gray-600">Meta</p>
                             </div>
                         </div> <button class="p-2 text-gray-400 hover:text-primary-500 transition-colors">
@@ -300,7 +295,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-5 py-3 group-hover:bg-gray-100 transition-colors">
-                    <a href="#"
+                    <a asp-controller="Students" asp-action="Internship"
                        class="text-primary-600 font-medium hover:text-primary-700 transition-colors flex items-center">
                         View
                         Details <span class="material-symbols-outlined ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -317,6 +312,7 @@
                 <a href="#" class="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-primary-100 transition-colors">4</a>
                 <a href="#" class="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-primary-100 transition-colors">5</a>
                 <a href="#" class="px-4 py-2 text-sm font-medium rounded-r-md bg-white text-gray-700 hover:bg-primary-100 transition-colors">Next</a>
+
             </nav>
         </div>
         <div class="mt-12 bg-primary-50 rounded-xl p-8 border border-primary-100">

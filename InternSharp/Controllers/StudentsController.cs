@@ -12,9 +12,14 @@ namespace InternSharp.Controllers
         {
             return View();
         }
-        public IActionResult Courses()
+        public IActionResult ApplicationSubmission()
         {
             return View();
         }
+        public IActionResult ResumeUpload()
+        {
+            return View();
+        }
+
     }
 }
