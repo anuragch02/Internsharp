@@ -16,8 +16,9 @@
 </head>
 <body>
     @{
-       
-        var useremail = Context.Session.GetString("UserEmail"); 
+
+        var useremail = Context.Session.GetString("UserEmail");
+        var username = Context.Session.GetString("UserName");
         var isAuthenticated = !string.IsNullOrEmpty(useremail) || User.Identity.IsAuthenticated;
 
     }
@@ -110,6 +111,7 @@
                         </div>
                         @if (isAuthenticated)
                         {
+                            <p class =" font-bold transition-colors ">@username</p>
                             <a class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-primary-400 transition-colors"
                                asp-controller="Accounts" asp-action="SignOut">
                                 Sign Out
