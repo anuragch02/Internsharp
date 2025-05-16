@@ -93,7 +93,7 @@ namespace InternSharp.Controllers
             HttpContext.Session.SetString("UserEmail", user.Email);
             HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Students");
         }
 
         public async Task<IActionResult> SignOut()
@@ -151,7 +151,7 @@ namespace InternSharp.Controllers
             HttpContext.Session.SetString("UserEmail", user.Email);
             HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Students");
         }
     }
 }
