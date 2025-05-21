@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using InternSharp.DbContext;
 using InternSharp.Models;
+using System.Data;
+using System.Text.Json;
 
 namespace InternSharp.Repositories
 {
@@ -18,6 +20,19 @@ namespace InternSharp.Repositories
             var query = "sp_GetAllInternships";
             var internships = await connection.QueryAsync<InternshipModel>(query);
             return internships;
+        }
+        public async Task<InternshipModel> GetInternshipByIdAsync(int id)
+        {
+            using var connection = _context.CreateConnection();
+            var query = "sp_GetInternshipById";
+
+            var parameters = new { ID = id };
+
+            var internship = await connection.QueryFirstOrDefaultAsync<InternshipModel>(
+                query,
+                parameters,
+                commandType: CommandType.StoredProcedure);
+            return internship;
         }
     }
 }
