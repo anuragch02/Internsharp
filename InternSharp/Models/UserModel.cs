@@ -5,7 +5,7 @@ namespace InternSharp.Models
     public class UserModel
     {
         [Key]
-        public int Id { get; set; }
+        public int UserID { get; set; }
 
         [Required]
         public string FirstName { get; set; }

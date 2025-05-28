@@ -29,9 +29,25 @@ namespace InternSharp.Controllers
             return View();
         }
 
-        public IActionResult ApplicationSubmission()
+        public async Task <IActionResult> ApplicationSubmission(int id)
         {
-            return View();
+            var userIdString = HttpContext.Session.GetString("UserId");
+
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                return RedirectToAction("SignIn", "Accounts");
+            }
+            if (!int.TryParse(userIdString, out int userId) || userId <= 0)
+            {
+                return RedirectToAction("SignIn", "Accounts");
+            }
+            var internship = await _internshipRepository.GetInternshipByIdAsync(id);
+            if (internship == null)
+            {
+                return NotFound();
+            }
+
+            return View(internship);
         }
 
         public IActionResult ResumeUpload()

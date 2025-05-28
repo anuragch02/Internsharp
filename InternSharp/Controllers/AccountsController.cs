@@ -2,6 +2,7 @@
 using InternSharp.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
@@ -92,6 +93,7 @@ namespace InternSharp.Controllers
 
             HttpContext.Session.SetString("UserEmail", user.Email);
             HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
+            HttpContext.Session.SetString("UserId", user.UserID.ToString());
 
             return RedirectToAction("Dashboard", "Students");
         }
@@ -150,6 +152,7 @@ namespace InternSharp.Controllers
 
             HttpContext.Session.SetString("UserEmail", user.Email);
             HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
+            HttpContext.Session.SetString("UserId", user.UserID.ToString());
 
             return RedirectToAction("Dashboard", "Students");
         }

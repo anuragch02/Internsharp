@@ -148,7 +148,7 @@
                 <div class="space-y-6">
                     <div class="bg-white rounded-xl shadow-lg p-6 transition-transform hover:scale-[1.01] duration-300">
                         <h3 class="text-lg font-semibold mb-6">Apply Now</h3>
-                        <a asp-controller="Students" asp-action="ApplicationSubmission"
+                        <a asp-controller="Students" asp-action="ApplicationSubmission" asp-route-id="@Model.ID"
                            class="block w-full px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 text-center mb-4">
                             <span class="material-symbols-outlined mr-2">send</span> Quick Apply
                         </a>

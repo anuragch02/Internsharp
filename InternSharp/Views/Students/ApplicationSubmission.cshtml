@@ -1,7 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{}
+﻿@model InternshipModel
+
     <div class="bg-gradient-to-b from-primary-50 to-white py-12">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mx-auto">
@@ -15,7 +13,7 @@
                         <h1 class="text-3xl font-bold text-gray-800 mb-4">Application Submitted Successfully!</h1>
                         <div class="h-1 w-20 bg-primary-500 mx-auto mb-6"></div>
                         <p class="text-gray-600 mb-8">
-                            Your application for the <span class="font-semibold text-gray-800">Software Development Intern</span> position at <span class="font-semibold text-gray-800">TechInnovate Solutions</span> has been successfully submitted.
+                            Your application for the <span class="font-semibold text-gray-800">@Model.Title</span> position at <span class="font-semibold text-gray-800">@Model.CompanyName</span> has been successfully submitted.
                         </p>
                         <div class="bg-gray-50 rounded-lg p-6 mb-8">
                             <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-4">
@@ -24,8 +22,8 @@
                                         <span class="material-symbols-outlined text-2xl text-primary-600">code</span>
                                     </div>
                                     <div>
-                                        <h2 class="text-lg font-semibold">TechInnovate Solutions</h2>
-                                        <p class="text-gray-600 text-sm">Software Development Intern</p>
+                                    <h2 class="text-lg font-semibold">@Model.CompanyName</h2>
+                                    <p class="text-gray-600 text-sm">@Model.Title</p>
                                     </div>
                                 </div> <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Applied</span>
                             </div>
@@ -36,7 +34,7 @@
                                 </div>
                                 <div class="text-sm">
                                     <p class="text-gray-500 mb-1">Date Applied</p>
-                                    <p class="font-medium">June 20, 2023</p>
+                                    <p class="font-medium">@Model.CreatedDate</p>
                                 </div>
                                 <div class="text-sm">
                                     <p class="text-gray-500 mb-1">Status</p>

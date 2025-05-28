@@ -27,7 +27,7 @@ namespace InternSharp.Repositories
             using var connection = _context.CreateConnection();
             var newUserId = await connection.ExecuteScalarAsync<int>(query, parameters, commandType: CommandType.StoredProcedure);
 
-            user.Id = newUserId;
+            user.UserID = newUserId;
             return user;
         }
         public async Task<UserModel?> GetUserByEmailAsync(string email)
@@ -39,7 +39,6 @@ namespace InternSharp.Repositories
 
             using var connection = _context.CreateConnection();
             var user = await connection.QuerySingleOrDefaultAsync<UserModel>(query, parameters, commandType: CommandType.StoredProcedure);
-
             return user;
         }
         //public async Task<SignInModel> AuthenticateUserAsync(SignInModel model)
