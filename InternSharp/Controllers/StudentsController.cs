@@ -1,4 +1,5 @@
-﻿using InternSharp.Repositories;
+﻿using InternSharp.Models;
+using InternSharp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InternSharp.Controllers
@@ -20,6 +21,16 @@ namespace InternSharp.Controllers
             {
                 return NotFound();
             }
+            bool isApplied = false;
+
+            var userIdStr = HttpContext.Session.GetString("UserId");
+
+            if (int.TryParse(userIdStr, out int userId))
+            {
+                isApplied = await _internshipRepository.HasUserAppliedAsync(userId, id);
+
+            }
+            ViewBag.IsApplied = isApplied;
 
             return View(internship); 
         }
@@ -28,7 +39,6 @@ namespace InternSharp.Controllers
         {
             return View();
         }
-
         public async Task <IActionResult> ApplicationSubmission(int id)
         {
             var userIdString = HttpContext.Session.GetString("UserId");
@@ -46,7 +56,18 @@ namespace InternSharp.Controllers
             {
                 return NotFound();
             }
+            int? resumeId = null;
 
+            var application = new InternshipApplicationModel
+            {
+                UserID = userId,
+                InternshipID = id,
+                StatusID = 7, // Default 7 = Applied
+                AppliedDate = DateTime.Now,
+                ResumeID = resumeId,
+                IsActive = true
+            };
+            await _internshipRepository.AddInternshipApplicationAsync(application);
             return View(internship);
         }
 

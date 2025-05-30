@@ -5,7 +5,7 @@
 
 <div class="bg-gradient-to-b from-primary-50 to-white py-12">
     <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-7xl mx-auto" style="width:100vw">
             <!-- Breadcrumb -->
             <div class="mb-8">
                 <nav class="flex" aria-label="Breadcrumb">
@@ -14,12 +14,6 @@
                             <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600">
                                 <span class="material-symbols-outlined text-sm mr-2">home</span> Home
                             </a>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <span class="text-gray-400 mx-2">/</span>
-                                <a href="/internships" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary-600">Internships</a>
-                            </div>
                         </li>
                         <li aria-current="page">
                             <div class="flex items-center">
@@ -107,7 +101,7 @@
                         {
                             <div class="mb-6">
                                 <h3 class="text-lg font-semibold mb-2">Responsibilities</h3>
-                                <ul class="list-disc list-outside  text-gray-700 space-y-1">
+                                <ul class="list-disc list-outside pl-5 text-gray-700 space-y-1" style="list-style-type: disc;">
                                     @foreach (var item in Model.FullDescriptionJson.Responsibilities)
                                     {
                                         <li>@item</li>
@@ -120,7 +114,7 @@
                         {
                             <div class="mb-6">
                                 <h3 class="text-lg font-semibold mb-2">Requirements</h3>
-                                <ul class="list-disc list-outside  text-gray-700 space-y-1">
+                                <ul class="list-disc list-outside pl-5 text-gray-700 space-y-1" style="list-style-type: disc;">
                                     @foreach (var item in Model.FullDescriptionJson.Requirements)
                                     {
                                         <li>@item</li>
@@ -133,7 +127,7 @@
                         {
                             <div>
                                 <h3 class="text-lg font-semibold mb-2">Benefits</h3>
-                                <ul class="list-disc list-outside  text-gray-700 space-y-1">
+                                <ul class="list-disc list-outside pl-5 text-gray-700 space-y-1" style="list-style-type: disc;">
                                     @foreach (var item in Model.FullDescriptionJson.Benefits)
                                     {
                                         <li>@item</li>
@@ -145,13 +139,23 @@
                 </div>
 
                 <!-- Right Column -->
-                <div class="space-y-6">
+                <div class="lg:col-span-1 space-y-6">
                     <div class="bg-white rounded-xl shadow-lg p-6 transition-transform hover:scale-[1.01] duration-300">
                         <h3 class="text-lg font-semibold mb-6">Apply Now</h3>
-                        <a asp-controller="Students" asp-action="ApplicationSubmission" asp-route-id="@Model.ID"
-                           class="block w-full px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 text-center mb-4">
-                            <span class="material-symbols-outlined mr-2">send</span> Quick Apply
-                        </a>
+                        @if (ViewBag.IsApplied == true)
+                        {
+                            <div style="background: green;"
+                                 class="block w-full px-6 py-3 text-white rounded-lg text-center mb-4 cursor-not-allowed hover:opacity-90">
+                                <span class="material-symbols-outlined mr-2">check_circle</span> Applied
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-controller="Students" asp-action="ApplicationSubmission" asp-route-id="@Model.ID"
+                               class="block w-full px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 text-center mb-4">
+                                <span class="material-symbols-outlined mr-2">send</span> Quick Apply
+                            </a>
+                        }
                         <a asp-controller="Students" asp-action="ResumeUpload"
                            class="block w-full px-6 py-3 border border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 text-center">
                             <span class="material-symbols-outlined mr-2">description</span> Apply with Resume

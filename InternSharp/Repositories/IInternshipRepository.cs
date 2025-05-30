@@ -6,5 +6,7 @@ namespace InternSharp.Repositories
     {
         Task<IEnumerable<InternshipModel>> GetAllInternshipsAsync();
         Task<InternshipModel> GetInternshipByIdAsync(int id);
+        Task<int> AddInternshipApplicationAsync(InternshipApplicationModel model);
+        Task<bool> HasUserAppliedAsync(int userId, int internshipId);
     }
 }
