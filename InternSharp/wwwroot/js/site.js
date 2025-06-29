@@ -2,40 +2,31 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
 // Show the popup with JavaScript after successful login
-function signIn() {
-    // Simulate successful login logic
-    // Normally you'd check username/password via backend here
-    const isLoginSuccessful = true; // Simulate login success
-
-    if (isLoginSuccessful) {
-        sessionStorage.setItem('isLoggedIn', 'true');
-
-        // Show popup
-        document.getElementById("successPopup").style.display = "flex";
-    } else {
-        alert("Invalid credentials");
+function handleLoginSuccess() {
+    const popup = document.getElementById("successPopup");
+    if (popup) {
+        popup.style.display = "flex";
     }
 }
-function handleLoginSuccess() {
-    // Show the popup
-    document.getElementById("successPopup").style.display = "flex";
-}
-function goToHome() {
-    window.location.href = "https://localhost:7252/"; // or your home.cshtml
-    // Show the popup
-    document.getElementById("SignOut").style.display = "flex";
-    
 
+function goToHome() {
+    window.location.href = "https://localhost:7252/";
+    const signOutPopup = document.getElementById("SignOut");
+    if (signOutPopup) {
+        signOutPopup.style.display = "flex";
+    }
 }
 
 // Simulate sign in
 function signIn() {
-    // Perform login logic or redirect...
-    // Simulate success
-    //window.location.href = "https://localhost:7252/Accounts/SignIn"; // or your home.cshtml
+    // Simulate successful login
     sessionStorage.setItem('isLoggedIn', 'true');
     updateAuthButton();
+
+    // Optionally show popup
+    handleLoginSuccess();
 }
 
 function signOut() {
@@ -46,6 +37,12 @@ function signOut() {
 function updateAuthButton() {
     const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
     const authDiv = document.getElementById('authButton');
+
+    if (!authDiv) {
+        console.warn("Element with ID 'authButton' not found.");
+        return;
+    }
+
     if (isLoggedIn) {
         authDiv.innerHTML = `<button class="btn" onclick="signOut()">Sign Out</button>`;
     } else {
@@ -53,6 +50,7 @@ function updateAuthButton() {
     }
 }
 
-// Call on page load
-updateAuthButton();
-
+// Ensure DOM is fully loaded before running updateAuthButton
+document.addEventListener("DOMContentLoaded", function () {
+    updateAuthButton();
+});
